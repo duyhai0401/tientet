@@ -422,3 +422,5 @@ function sabino_cat_columns_array_push_after( $src, $sabino_cat_in, $pos ) {
     }
     return $R;
 }
+
+require get_template_directory() . '/widgets/th-widget-function.php';
