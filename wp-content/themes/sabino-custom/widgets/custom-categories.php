@@ -41,17 +41,18 @@ class Th_Custom_Categories extends WP_Widget {
         $all_categories = get_categories( $cat_args );
         $pro_cat = array();
         foreach($all_categories as $cat) {
-            if($cat->parent != 0) {
-                $pro_cat[$cat->parent]['children'][$cat->term_id]['data'] = $cat;
-                krsort($pro_cat[$cat->parent]['children']);
-            } else {
-                $pro_cat[$cat->term_id]['data'] = $cat;
+            if($cat->slug != 'chua-phan-loai') {
+                if($cat->parent != 0) {
+                    $pro_cat[$cat->parent]['children'][$cat->term_id]['data'] = $cat;
+                } else {
+                    $pro_cat[$cat->term_id]['data'] = $cat;
+                }
             }
         }
-        krsort($pro_cat);
         ?>
-        <div id="wrap-custom">
-		  <ul class="sidesnavbar">
+        <!--<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>-->
+        <div id="wrap-custom" class="menu-list">
+		  <ul class="sidesnavbar menu-content  out" >
 		      <?php
 		        foreach($pro_cat as $cat) {
 		            $category_str = "<li><a href='".get_term_link( $cat['data']->term_id, 'product_cat' )."'>".$cat['data']->name."</a>";
